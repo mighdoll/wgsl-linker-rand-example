@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@webgpu/types": "^0.1.40",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "wgsl-linker": "^0.3.2"
+    "wgsl-linker": "^0.3.3"
   }
 }

@@ -6,10 +6,13 @@ settings:
 
 dependencies:
   wgsl-linker:
-    specifier: ^0.3.2
-    version: 0.3.2
+    specifier: ^0.3.3
+    version: 0.3.3
 
 devDependencies:
+  '@webgpu/types':
+    specifier: ^0.1.40
+    version: 0.1.40
   typescript:
     specifier: ^5.2.2
     version: 5.4.2
@@ -334,6 +337,10 @@ packages:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
 
+  /@webgpu/types@0.1.40:
+    resolution: {integrity: sha512-/BBkHLS6/eQjyWhY2H7Dx5DHcVrS2ICj9owvSRdgtQT6KcafLZA86tPze0xAOsd4FbsYKCUBUQyNi87q7gV7kw==}
+    dev: true
+
   /esbuild@0.19.12:
     resolution: {integrity: sha512-aARqgq8roFBj054KvQr5f1sFu0D65G+miZRCuJyJ0G13Zwx7vRar5Zhn2tkQNzIXcBrNVsv/8stehpj+GAjgbg==}
     engines: {node: '>=12'}
@@ -465,8 +472,8 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /wgsl-linker@0.3.2:
-    resolution: {integrity: sha512-jo3Yu0VmaYXN+Ak48/v8482V4TtpCgp2WyLEHV7oc4Ke8gYtq+SnzcUwmMOVI7eV1IzVf2fs+omHVhqa6VyCxg==}
+  /wgsl-linker@0.3.3:
+    resolution: {integrity: sha512-JZ5cxmRJpNF7RhISy/pxGALX7EDB5Ekjk29g+MgCt4wmWP1XzXui+6qMTnfiY6oVtKn/T18ZFthOroIijc3GLg==}
     dependencies:
       mini-parse: 0.2.1
     dev: false
