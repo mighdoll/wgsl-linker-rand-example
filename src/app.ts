@@ -21,18 +21,24 @@ export async function createDrawing(
 
   const drawable = await createShader(device, canvasContext);
 
-  stopButton.addEventListener("click", (e: MouseEvent) => {
+  const buttonHandler = getButtonHandler(drawable);
+  stopButton.addEventListener("click", buttonHandler);
+  drawable.draw();
+
+  drawLoop(drawable);
+}
+
+type ButtonClickListener = (this: HTMLButtonElement, evt: MouseEvent) => void;
+
+function getButtonHandler(drawable: Drawable): ButtonClickListener {
+  return function buttonHandler(e: MouseEvent): void {
     const stopped = !drawable.stopped;
     drawable.stopped = stopped;
     const button = e.target as HTMLButtonElement;
     const text = stopped ? "start" : "stop";
     button.innerHTML = text;
     if (!stopped) drawLoop(drawable);
-  });
-
-  drawable.draw();
-
-  drawLoop(drawable);
+  };
 }
 
 function drawLoop(drawable: Drawable): void {
