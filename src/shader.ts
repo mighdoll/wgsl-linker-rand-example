@@ -24,7 +24,7 @@ export async function createShader(
     ],
   });
 
-  const uniformBufferSize = 4 * 1; // 1 u32 for frame number
+  const uniformBufferSize = 1 * 4; // .frame 
   const uniformBuffer = device.createBuffer({
     size: uniformBufferSize,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
@@ -66,12 +66,15 @@ export async function createShader(
     ],
   });
 
+  const uniformData = new ArrayBuffer(uniformBufferSize);
+
   let frameNumber = 0;
 
   function draw() {
-    const uniformData = new Uint32Array([frameNumber++]);
+    const view = new DataView(uniformData);
+    view.setUint32(0, frameNumber++, true);
 
-    device.queue.writeBuffer(uniformBuffer, 0, uniformData.buffer);
+    device.queue.writeBuffer(uniformBuffer, 0, uniformData);
 
     const commandEncoder = device.createCommandEncoder();
     const textureView = canvasContext.getCurrentTexture().createView();
