@@ -2,7 +2,7 @@ import { createDrawing } from "./app.ts";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
-  <canvas id="canvas" width="600" height="600"></canvas>
+  <canvas id="canvas" width="300" height="300" style="width:600px; height:600px; image-rendering:pixelated"></canvas>
   <button id="stop">start</button>
   </div>
 `;
