@@ -21,9 +21,9 @@ fn vtx_main(@builtin(vertex_index) vertex_index: u32) -> @builtin(position) vec4
 
 @fragment
 fn frag_main(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
-    let uPos = vec2<u32>(pos.xy * 500.0);
-    let random = pcg_3d(vec3(uPos, u.frame));
+    let uPos = vec2<u32>(pos.xy) + u.frame;
+    let random = pcg_3d(vec3(uPos, 1u));
     let asFloat = vec3<f32>(random);
-    let normalized = ldexp(asFloat, vec3(-32i));
+    let normalized = ldexp(asFloat, vec3(-32));
     return vec4(normalized, 1);
 }
