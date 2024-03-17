@@ -1,3 +1,4 @@
+// #module wgsl-linker-demo.util
 // a PCG style random number generator
 // adapted from http://www.jcgt.org/published/0009/03/02/
 

@@ -4,6 +4,7 @@
 struct Uniforms {
     frame: u32,
 }
+
 @binding(0) @group(0) var<uniform> u: Uniforms;
 
 @vertex
