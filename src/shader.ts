@@ -93,7 +93,7 @@ export async function createShader(
     const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
     passEncoder.setPipeline(pipeline);
     passEncoder.setBindGroup(0, uniformBindGroup);
-    passEncoder.draw(4, 1, 0, 0);
+    passEncoder.draw(4, 1);
     passEncoder.end();
 
     device.queue.submit([commandEncoder.finish()]);
