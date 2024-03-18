@@ -1,4 +1,5 @@
-import { LinkedSrc, simpleRenderShader, linkSrc } from "./shader.ts";
+import { LinkedSrc, linkSrc } from "./linkSrc.ts";
+import { simpleRenderShader } from "./shader.ts";
 import { SlIconButton } from "@shoelace-style/shoelace";
 
 export interface Drawable {

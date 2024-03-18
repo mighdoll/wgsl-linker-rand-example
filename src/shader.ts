@@ -1,22 +1,5 @@
-import { ModuleRegistry, linkWgsl } from "wgsl-linker";
-import src from "./main.wgsl?raw";
-import utilWgsl from "./util.wgsl?raw";
 import { Drawable } from "./app.ts";
 
-export interface LinkedSrc {
-  code: string;
-  modules: Record<string, string>;
-}
-
-/** Link wgsl src
- * @return linked code (plus the unlinked src for UI display)
- */
-export function linkSrc(): LinkedSrc {
-  const registry = new ModuleRegistry(utilWgsl);
-  const code = linkWgsl(src, registry);
-  const modules = { main: src, util: utilWgsl };
-  return { code, modules };
-}
 
 /** 
  * Create a simple rendering shader 
