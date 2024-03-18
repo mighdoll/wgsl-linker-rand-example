@@ -1,4 +1,5 @@
 import { createShader } from "./shader.ts";
+import { SlIconButton } from "@shoelace-style/shoelace";
 
 export interface Drawable {
   draw(): void;
@@ -34,9 +35,8 @@ function getButtonHandler(drawable: Drawable): ButtonClickListener {
   return function buttonHandler(e: MouseEvent): void {
     const stopped = !drawable.stopped;
     drawable.stopped = stopped;
-    const button = e.target as HTMLButtonElement;
-    const text = stopped ? "start" : "stop";
-    button.innerHTML = text;
+    const button = e.target as SlIconButton;
+    button.name = stopped ? "play" : "pause";
     if (!stopped) drawLoop(drawable);
   };
 }
