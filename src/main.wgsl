@@ -5,7 +5,6 @@ struct Uniforms { frame: u32 }
 
 @binding(0) @group(0) var<uniform> u: Uniforms;
 
-// vertex shader entry point 
 @vertex
 fn vertexMain(@builtin(vertex_index) vertex_index: u32) -> @builtin(position) vec4<f32> {
     const pos = array<vec2<f32>,4>(
@@ -18,9 +17,7 @@ fn vertexMain(@builtin(vertex_index) vertex_index: u32) -> @builtin(position) ve
     return vec4<f32>(pos[vertex_index], 0.0, 1.0);
 }
 
-// fragment shader entry point 
 @fragment
-
 fn fragmentMain(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
     let seed = posToSeed(pos.xy);
     let random = pcg_3d(seed);
