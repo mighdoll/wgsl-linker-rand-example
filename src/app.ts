@@ -52,7 +52,6 @@ ${src}
       ${srcTabs}
       ${srcPanels}
     </sl-tab-group>`;
-    console.log(html)
 
   return html;
 }
