@@ -39,7 +39,12 @@ function makeSrcPanel(linked: LinkedSrc): string {
     .map(([name]) => `<sl-tab slot="nav" panel="${name}">${name}</sl-tab>`)
     .join("\n");
   const srcPanels = srcEntries
-    .map(([name, src]) => ` <sl-tab-panel name="${name}">${src}</sl-tab-panel>`)
+    .map(([name, src]) => `
+      <sl-tab-panel name="${name}">
+        <pre>
+${src}
+        </pre>
+      </sl-tab-panel>`)
     .join("\n");
 
   const html = `
@@ -47,6 +52,7 @@ function makeSrcPanel(linked: LinkedSrc): string {
       ${srcTabs}
       ${srcPanels}
     </sl-tab-group>`;
+    console.log(html)
 
   return html;
 }

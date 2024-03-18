@@ -13,7 +13,7 @@ fn pcg_3d(seed: vec3<u32>) -> vec3<u32> {
     return v;
 }
 
-// permuted lcg (named to show a linker resolved conflict)
+// permuted lcg (named to show a linker resolved named conflict)
 fn mixing(v: vec3<u32>) -> vec3<u32> {
     var m: vec3<u32>;
     m.x = v.x + v.y * v.z;

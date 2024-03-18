@@ -5,6 +5,7 @@ struct Uniforms { frame: u32 }
 
 @binding(0) @group(0) var<uniform> u: Uniforms;
 
+// vertex shader entry point 
 @vertex
 fn vertexMain(@builtin(vertex_index) vertex_index: u32) -> @builtin(position) vec4<f32> {
     const pos = array(
@@ -17,6 +18,7 @@ fn vertexMain(@builtin(vertex_index) vertex_index: u32) -> @builtin(position) ve
     return vec4<f32>(pos[vertex_index], 0, 1);
 }
 
+// fragment shader entry point 
 @fragment
 fn fragmentMain(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
     let uPos = vec2<u32>(pos.xy) + u.frame;
@@ -26,5 +28,5 @@ fn fragmentMain(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
     return vec4(normalized, 1);
 }
 
-// to show linker resolving name conflict 
+// to show linker resolving name conflict - util.wgsl also uses a fn named 'mixing' 
 fn mixing() { }

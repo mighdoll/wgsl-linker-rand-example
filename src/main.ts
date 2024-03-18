@@ -1,6 +1,7 @@
 import "@shoelace-style/shoelace";
 import "@shoelace-style/shoelace/dist/themes/light.css";
 import { createDrawing } from "./app.ts";
+import "../styles.css";
 
 import { setBasePath } from "@shoelace-style/shoelace";
 setBasePath("/shoelace-assets");
