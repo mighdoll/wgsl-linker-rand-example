@@ -1,4 +1,4 @@
-import { LinkedSrc, createShader, linkSrc } from "./shader.ts";
+import { LinkedSrc, simpleRenderShader, linkSrc } from "./shader.ts";
 import { SlIconButton } from "@shoelace-style/shoelace";
 
 export interface Drawable {
@@ -23,7 +23,7 @@ export async function createDrawing(
 
   const linked = linkSrc();
   srcPanel.innerHTML = makeSrcPanel(linked);
-  const drawable = await createShader(device, canvasContext, linked.code);
+  const drawable = await simpleRenderShader(device, canvasContext, linked.code);
 
   const buttonHandler = getButtonHandler(drawable);
   stopButton.addEventListener("click", buttonHandler);

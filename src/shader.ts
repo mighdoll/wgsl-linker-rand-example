@@ -18,11 +18,22 @@ export function linkSrc(): LinkedSrc {
   return { code, modules };
 }
 
-export async function createShader(
+/** 
+ * Create a simple rendering shader 
+ * 
+ * @param code should have two entry points: vertexMain and fragmentMain
+ *   The uniform buffer will be passed a single u32 containging the frame number
+ * @param canvasContext the shader will render to the provided output texture 
+ * 
+ * @returns an object containing a draw() function to trigger gpu rendering.
+*/
+export async function simpleRenderShader(
   device: GPUDevice,
   canvasContext: GPUCanvasContext,
   code: string
 ): Promise<Drawable> {
+  let frameNumber = 0;
+
   const shaderModule = device.createShaderModule({ code });
 
   const bindGroupLayout = device.createBindGroupLayout({
@@ -75,7 +86,6 @@ export async function createShader(
 
   const uniformData = new ArrayBuffer(uniformBufferSize);
 
-  let frameNumber = 0;
 
   function draw(): void {
     const view = new DataView(uniformData);
