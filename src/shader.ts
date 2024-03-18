@@ -9,10 +9,7 @@ export async function createShader(
 ): Promise<Drawable> {
   const registry = new ModuleRegistry(utilWgsl);
   const code = linkWgsl(src, registry);
-
-  const shaderModule = device.createShaderModule({
-    code,
-  });
+  const shaderModule = device.createShaderModule({ code });
 
   const bindGroupLayout = device.createBindGroupLayout({
     entries: [
@@ -24,7 +21,7 @@ export async function createShader(
     ],
   });
 
-  const uniformBufferSize = 1 * 4; // .frame 
+  const uniformBufferSize = 1 * 4; // .frame
   const uniformBuffer = device.createBuffer({
     size: uniformBufferSize,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
@@ -43,11 +40,7 @@ export async function createShader(
     fragment: {
       module: shaderModule,
       entryPoint: "frag_main",
-      targets: [
-        {
-          format: presentationFormat,
-        },
-      ],
+      targets: [{ format: presentationFormat }],
     },
     primitive: {
       topology: "triangle-strip",
