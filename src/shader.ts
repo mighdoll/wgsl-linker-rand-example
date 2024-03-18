@@ -1,4 +1,7 @@
-import { Drawable } from "./app.ts";
+export interface Drawable {
+  draw(): void;
+  stopped: boolean;
+}
 
 
 /** 

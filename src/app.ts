@@ -1,11 +1,6 @@
 import { LinkedSrc, linkSrc } from "./linkSrc.ts";
-import { simpleRenderShader } from "./shader.ts";
+import { Drawable, simpleRenderShader } from "./shader.ts";
 import { SlIconButton } from "@shoelace-style/shoelace";
-
-export interface Drawable {
-  draw(): void;
-  stopped: boolean;
-}
 
 export async function createDrawing(
   canvas: HTMLCanvasElement,
