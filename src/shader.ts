@@ -3,13 +3,26 @@ import src from "./main.wgsl?raw";
 import utilWgsl from "./util.wgsl?raw";
 import { Drawable } from "./app.ts";
 
-export async function createShader(
-  device: GPUDevice,
-  canvasContext: GPUCanvasContext
-): Promise<Drawable> {
+export interface LinkedSrc {
+  code: string;
+  modules: Record<string, string>;
+}
+
+/** Link wgsl src
+ * @return linked code (plus the unlinked src for UI display)
+ */
+export function linkSrc(): LinkedSrc {
   const registry = new ModuleRegistry(utilWgsl);
   const code = linkWgsl(src, registry);
-  console.log(code);
+  const modules = { main: src, util: utilWgsl };
+  return { code, modules };
+}
+
+export async function createShader(
+  device: GPUDevice,
+  canvasContext: GPUCanvasContext,
+  code: string
+): Promise<Drawable> {
   const shaderModule = device.createShaderModule({ code });
 
   const bindGroupLayout = device.createBindGroupLayout({
