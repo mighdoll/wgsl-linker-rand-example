@@ -9,6 +9,7 @@ export async function createShader(
 ): Promise<Drawable> {
   const registry = new ModuleRegistry(utilWgsl);
   const code = linkWgsl(src, registry);
+  console.log(code);
   const shaderModule = device.createShaderModule({ code });
 
   const bindGroupLayout = device.createBindGroupLayout({

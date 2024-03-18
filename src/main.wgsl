@@ -1,9 +1,7 @@
 // #module main
 // #import pcg_3d
 
-struct Uniforms {
-    frame: u32,
-}
+struct Uniforms { frame: u32 }
 
 @binding(0) @group(0) var<uniform> u: Uniforms;
 
@@ -27,3 +25,6 @@ fn frag_main(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
     let normalized = ldexp(asFloat, vec3(-32));
     return vec4(normalized, 1);
 }
+
+// to show linker resolving name conflict 
+fn mixing() { }
