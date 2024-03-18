@@ -44,7 +44,7 @@ function getButtonHandler(drawable: Drawable): ButtonClickListener {
 function drawLoop(drawable: Drawable): void {
   drawRepeat();
 
-  function drawRepeat() {
+  function drawRepeat(): void {
     if (drawable.stopped) return;
     drawable.draw();
     requestAnimationFrame(drawRepeat);

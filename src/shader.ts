@@ -64,7 +64,7 @@ export async function createShader(
 
   let frameNumber = 0;
 
-  function draw() {
+  function draw(): void {
     const view = new DataView(uniformData);
     view.setUint32(0, frameNumber++, true);
 
