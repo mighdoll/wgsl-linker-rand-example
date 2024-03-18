@@ -36,11 +36,11 @@ export async function createShader(
     }),
     vertex: {
       module: shaderModule,
-      entryPoint: "vtx_main",
+      entryPoint: "vertexMain",
     },
     fragment: {
       module: shaderModule,
-      entryPoint: "frag_main",
+      entryPoint: "fragmentMain",
       targets: [{ format: presentationFormat }],
     },
     primitive: {
