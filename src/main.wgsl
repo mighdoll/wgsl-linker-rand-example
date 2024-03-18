@@ -1,5 +1,5 @@
 // #module main
-// #import pcg_3d
+// #import pcg_3d from demo.util 
 
 struct Uniforms { frame: u32 }
 
@@ -27,7 +27,7 @@ fn fragmentMain(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
 }
 
 // mix position into a seed as per: https://www.shadertoy.com/view/XlGcRh
-fn posToSeed(pos:vec2<f32>)->vec3<u32> {
+fn posToSeed(pos: vec2<f32>) -> vec3<u32> {
     let p = pos + f32(u.frame);
     let seed = vec3<u32>(
         u32(p.x),
