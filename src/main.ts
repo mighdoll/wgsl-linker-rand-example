@@ -1,6 +1,6 @@
 import "@shoelace-style/shoelace";
 import "@shoelace-style/shoelace/dist/themes/light.css";
-import { createDrawing } from "./app.ts";
+import { startApp } from "./app.ts";
 import "../styles.css";
 
 import { setBasePath } from "@shoelace-style/shoelace";
@@ -18,4 +18,4 @@ const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
 const stopButton = document.querySelector<HTMLButtonElement>("#stop")!;
 const srcPanel = document.querySelector<HTMLDivElement>("#srcPanel")!;
 
-createDrawing(canvas, stopButton, srcPanel);
+startApp(canvas, stopButton, srcPanel);

@@ -1,33 +1,46 @@
-import { LinkedSrc, linkSrc } from "./linkSrc.ts";
+import { LinkedSrc, linkDemoSrc } from "./linkSrc.ts";
 import { Drawable, simpleRenderShader } from "./shader.ts";
 import { SlIconButton } from "@shoelace-style/shoelace";
 
-export async function createDrawing(
+/** Wire up the html UI and install the demo WebGPU shader */
+export async function startApp(
   canvas: HTMLCanvasElement,
   stopButton: HTMLButtonElement,
   srcPanel: HTMLDivElement
 ): Promise<void> {
-  const gpu = navigator.gpu;
-  if (!gpu) {
-    return undefined;
-  }
-  const adapter = await gpu.requestAdapter();
-  if (!adapter) return undefined;
-  const device = await adapter.requestDevice();
+  const linked = linkDemoSrc();
+  const drawable = await setupRenderer(canvas, linked.code);
 
-  const canvasContext = configureCanvas(device, canvas, true);
-
-  const linked = linkSrc();
   srcPanel.innerHTML = makeSrcPanel(linked);
-  const drawable = await simpleRenderShader(device, canvasContext, linked.code);
 
-  const buttonHandler = getButtonHandler(drawable);
+  const buttonHandler = playPauseHandler(drawable);
   stopButton.addEventListener("click", buttonHandler);
-  drawable.draw();
 
-  drawLoop(drawable);
+  drawable.draw();
 }
 
+/** @return setup a gpu renderer to run the gpu demo */
+async function setupRenderer(
+  canvas: HTMLCanvasElement,
+  code: string
+): Promise<Drawable> {
+  const gpu = navigator.gpu;
+  if (!gpu) {
+    console.error("No GPU found, try chrome, or firefox on windows");
+    throw new Error("no GPU");
+  }
+  const adapter = await gpu.requestAdapter();
+  if (!adapter) {
+    console.error("No gpu adapter found");
+    throw new Error("no GPU adapter");
+  }
+  const device = await adapter.requestDevice();
+  const canvasContext = configureCanvas(device, canvas, true);
+  const drawable = await simpleRenderShader(device, canvasContext, code);
+  return drawable;
+}
+
+/** @return html for the tabs that display the source code */
 function makeSrcPanel(linked: LinkedSrc): string {
   const moduleEntries = Object.entries(linked.modules);
   const srcEntries = [["linked", linked.code], ...moduleEntries];
@@ -35,12 +48,14 @@ function makeSrcPanel(linked: LinkedSrc): string {
     .map(([name]) => `<sl-tab slot="nav" panel="${name}">${name}</sl-tab>`)
     .join("\n");
   const srcPanels = srcEntries
-    .map(([name, src]) => `
+    .map(
+      ([name, src]) => `
       <sl-tab-panel name="${name}">
         <pre>
 ${src}
         </pre>
-      </sl-tab-panel>`)
+      </sl-tab-panel>`
+    )
     .join("\n");
 
   const html = `
@@ -54,7 +69,7 @@ ${src}
 
 type ButtonClickListener = (this: HTMLButtonElement, evt: MouseEvent) => void;
 
-function getButtonHandler(drawable: Drawable): ButtonClickListener {
+function playPauseHandler(drawable: Drawable): ButtonClickListener {
   return function buttonHandler(e: MouseEvent): void {
     const stopped = !drawable.stopped;
     drawable.stopped = stopped;

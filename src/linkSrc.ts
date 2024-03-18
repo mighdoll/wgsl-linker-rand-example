@@ -7,11 +7,11 @@ export interface LinkedSrc {
   modules: Record<string, string>;
 }
 
-/** Link wgsl src
+/** Link demo wgsl src
  *
- * @return linked code (and the unlinked src modules - for display in the UI)
+ * @return linked code (with the unlinked src modules for display in the UI)
  */
-export function linkSrc(): LinkedSrc {
+export function linkDemoSrc(): LinkedSrc {
   const registry = new ModuleRegistry(utilWgsl);
   const code = linkWgsl(src, registry);
   const modules = { main: src, util: utilWgsl };
