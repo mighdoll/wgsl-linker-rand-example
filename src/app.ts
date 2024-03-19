@@ -1,3 +1,4 @@
+import { wgslToDom } from "./highlight.ts";
 import { LinkedSrc, linkDemoSrc } from "./linkSrc.ts";
 import { Drawable, simpleRenderShader } from "./shader.ts";
 import { SlIconButton } from "@shoelace-style/shoelace";
@@ -52,7 +53,7 @@ function makeSrcPanel(linked: LinkedSrc): string {
       ([name, src]) => `
       <sl-tab-panel name="${name}">
         <pre>
-${src}
+${wgslToDom(src)}
         </pre>
       </sl-tab-panel>`
     )
