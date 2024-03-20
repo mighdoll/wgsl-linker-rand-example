@@ -3,6 +3,11 @@
 
 struct Uniforms { frame: u32 }
 
+// #extends HasColor 
+struct Sprite { 
+    pos: vec2f, 
+}
+
 @binding(0) @group(0) var<uniform> u: Uniforms;
 
 @vertex
