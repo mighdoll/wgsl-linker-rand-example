@@ -44,7 +44,7 @@ async function setupRenderer(
 /** @return html for the tabs that display the source code */
 function makeSrcPanel(linked: LinkedSrc): string {
   const moduleEntries = Object.entries(linked.modules);
-  const srcEntries = [["linked", linked.code], ...moduleEntries];
+  const srcEntries = [...moduleEntries, ["linked", linked.code]];
   const srcTabs = srcEntries
     .map(([name]) => `<sl-tab slot="nav" panel="${name}">${name}</sl-tab>`)
     .join("\n");
