@@ -5,7 +5,7 @@
 
 The [wgsl linker] allows you to combine wgsl source code from multiple files.
 This example demonstrates importing a function from a utility library
-exporting a [PCG] random number generator.
+exporting a [PCG] psuedorandom number generator.
 
 The display shows the distribution of random values produced by the generator.
 Press the play button to animate through the range of random seed values.
