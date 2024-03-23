@@ -1,6 +1,6 @@
 # wgsl-linker random example
 
-[wgsl linker]: https://github.com/mighdoll/wgsl-linker-rand-example
+[wgsl linker]: https://github.com/mighdoll/wgsl-linker
 [pcg]: https://www.pcg-random.org/using-pcg.html
 
 The [wgsl linker] allows you to combine wgsl source code from multiple files.
