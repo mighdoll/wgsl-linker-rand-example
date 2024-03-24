@@ -1,7 +1,8 @@
 import { wgslToDom } from "./highlight.ts";
-import { LinkedSrc, linkDemoSrc } from "./linkSrc.ts";
+import { linkDemoSrc } from "./linkSrc.ts";
 import { Drawable, simpleRenderShader } from "./shader.ts";
 import { SlIconButton } from "@shoelace-style/shoelace";
+import { exampleSrc } from "./srcExampleCode.ts";
 
 /** Wire up the html UI and install the demo WebGPU shader */
 export async function startApp(
@@ -10,9 +11,9 @@ export async function startApp(
   srcPanel: HTMLDivElement
 ): Promise<void> {
   const linked = linkDemoSrc();
-  const drawable = await setupRenderer(canvas, linked.code);
+  const drawable = await setupRenderer(canvas, linked);
 
-  srcPanel.innerHTML = makeSrcPanel(linked);
+  srcPanel.innerHTML = makeSrcPanel(exampleSrc(), linked);
 
   const buttonHandler = playPauseHandler(drawable);
   stopButton.addEventListener("click", buttonHandler);
@@ -42,9 +43,9 @@ async function setupRenderer(
 }
 
 /** @return html for the tabs that display the source code */
-function makeSrcPanel(linked: LinkedSrc): string {
-  const moduleEntries = Object.entries(linked.modules);
-  const srcEntries = [...moduleEntries, ["linked", linked.code]];
+function makeSrcPanel(modules: Record<string, string>, linked: string): string {
+  const moduleEntries = Object.entries(modules);
+  const srcEntries = [...moduleEntries, ["linked", linked]];
   const srcTabs = srcEntries
     .map(([name]) => `<sl-tab slot="nav" panel="${name}">${name}</sl-tab>`)
     .join("\n");

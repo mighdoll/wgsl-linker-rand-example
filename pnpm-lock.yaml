@@ -21,8 +21,8 @@ dependencies:
     specifier: ^4.1.2
     version: 4.1.2
   wgsl-linker:
-    specifier: ^0.3.6
-    version: 0.3.6
+    specifier: ^0.3.10
+    version: 0.3.10
 
 devDependencies:
   '@webgpu/types':
@@ -1393,8 +1393,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /mini-parse@0.2.3:
-    resolution: {integrity: sha512-Ozlp/1YtJYr7CkEwD4x0CfGsR8hKWgc6t6ilq5UjOATmEHbCVLHJfCHORrKjA8QqPjxfB4NvYGiU/O/AtS2hiA==}
+  /mini-parse@0.3.10:
+    resolution: {integrity: sha512-rQ8cc8cGobMwhvuqpOK69ThuHQlkDl+jWZwhjzVsUC64LPbs/LG28Ttd7q8vybk3IYlM0vy0r6oGsJlfYMnPHg==}
     dev: false
 
   /minimatch@3.1.2:
@@ -1749,10 +1749,10 @@ packages:
     resolution: {integrity: sha512-dpojBhNsCNN7T82Tm7k26A6G9ML3NkhDsnw9n/eoxSRlVBB4CEtIQ/KTCLI2Fwf3ataSXRhYFkQi3SlnFwPvPQ==}
     dev: false
 
-  /wgsl-linker@0.3.6:
-    resolution: {integrity: sha512-uf4TbNl28gzLD3CEB6BbGKwMQEgoMNlkZ7epaHCZh2nVZ22oSs6mVulG2627WrgZerL7qjuzaXAs4739aBGnMQ==}
+  /wgsl-linker@0.3.10:
+    resolution: {integrity: sha512-0onWANxI3NUvB5EuFjlYNlP9ptqOBzgbQeVnrmiUH2ZLcIYxkNpDPN4ghMYLGaEd+NnPvr33EhH8v5js2c1SKA==}
     dependencies:
-      mini-parse: 0.2.3
+      mini-parse: 0.3.10
     dev: false
 
   /which@2.0.2:

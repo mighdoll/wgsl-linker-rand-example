@@ -1,19 +1,16 @@
-import { ModuleRegistry, linkWgsl } from "wgsl-linker";
-import src from "./main.wgsl?raw";
-import utilWgsl from "./util.wgsl?raw";
+import { ModuleRegistry } from "wgsl-linker";
 
-export interface LinkedSrc {
-  code: string;
-  modules: Record<string, string>;
-}
+const wgsl: Record<string, string> = import.meta.glob("./*.wgsl", {
+  query: "?raw",
+  eager: true,
+  import: "default",
+});
 
 /** Link demo wgsl src
  *
- * @return linked code (with the unlinked src modules for display in the UI)
+ * @return linked code
  */
-export function linkDemoSrc(): LinkedSrc {
-  const registry = new ModuleRegistry(utilWgsl);
-  const code = linkWgsl(src, registry);
-  const modules = { main: src, util: utilWgsl };
-  return { code, modules };
+export function linkDemoSrc(): string {
+  const registry = new ModuleRegistry({ wgsl });
+  return registry.link("main");
 }
